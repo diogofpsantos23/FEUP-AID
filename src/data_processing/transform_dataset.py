@@ -14,8 +14,19 @@ def transform_dataset(limit = 15000):
     if dropped > 0:
         print(f"Dropped {dropped:,} rows with null 'passenger_count'.")
 
+    ratecode_map = {
+        1: "Standard rate",
+        2: "JFK",
+        3: "Newark",
+        4: "Nassau or Westchester",
+        5: "Negotiated fare",
+        6: "Group ride",
+        99: "Null/unknown",
+    }
+
     if "RatecodeID" in df.columns:
-        df["RatecodeID"] = df["RatecodeID"].fillna(99).astype(int)
+        df["RatecodeID"] = df["RatecodeID"].map(ratecode_map).astype(str)
+        print("Converted 'RatecodeID' to descriptive strings.")
 
     if "store_and_fwd_flag" in df.columns:
         df["store_and_fwd_flag"] = df["store_and_fwd_flag"].fillna("N").astype(str)
