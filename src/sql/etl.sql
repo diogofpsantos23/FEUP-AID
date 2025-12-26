@@ -288,6 +288,7 @@ SELECT DISTINCT
   CASE
     WHEN VendorName = 'Curb Mobility, LLC' THEN 1
     WHEN VendorName = 'Creative Mobile Technologies, LLC' THEN 2
+    WHEN VendorName = 'Helix' THEN 3
     ELSE NULL
   END AS VendorCode,
   VendorName
@@ -328,26 +329,22 @@ GROUP BY Borough, Zone, ServiceZone;
 
 CREATE TABLE Dim_RateCode (
   RateCodeKey INT AUTO_INCREMENT PRIMARY KEY,
-  RateCodeIDOrig INT NULL,
   RateCodeDesc VARCHAR(50) NOT NULL,
-  UNIQUE (RateCodeIDOrig),
   UNIQUE (RateCodeDesc)
 );
 
-INSERT INTO Dim_RateCode(RateCodeIDOrig, RateCodeDesc)
-SELECT DISTINCT NULL, RateCodeDesc
+INSERT INTO Dim_RateCode(RateCodeDesc)
+SELECT DISTINCT RateCodeDesc
 FROM Stg_Trip;
 
 CREATE TABLE Dim_PaymentType (
   PaymentTypeKey INT AUTO_INCREMENT PRIMARY KEY,
-  PaymentTypeCodeOrig INT NULL,
   PaymentTypeDesc VARCHAR(60) NOT NULL,
-  UNIQUE (PaymentTypeCodeOrig),
   UNIQUE (PaymentTypeDesc)
 );
 
-INSERT INTO Dim_PaymentType(PaymentTypeCodeOrig, PaymentTypeDesc)
-SELECT DISTINCT NULL, PaymentTypeDesc
+INSERT INTO Dim_PaymentType(PaymentTypeDesc)
+SELECT DISTINCT PaymentTypeDesc
 FROM Stg_Trip;
 
 CREATE TABLE Dim_PassengerGroup (
