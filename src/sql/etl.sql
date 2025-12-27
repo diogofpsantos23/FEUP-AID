@@ -559,6 +559,6 @@ LEFT JOIN
   ON m.DateKey=b.DateKey AND m.VendorKey=b.VendorKey AND m.PickupLocationKey=b.PickupLocationKey;
 
 -- Sanity checks
-SELECT 'Stg_Trip' tbl, COUNT(*) cnt FROM Stg_Trip
-UNION ALL SELECT 'Fact_Trip', COUNT(*) FROM Fact_Trip
-UNION ALL SELECT 'Fact_Daily_ZoneVendor', COUNT(*) FROM Fact_Daily_ZoneVendor;
+-- SELECT 'Stg_Trip' tbl, COUNT(*) cnt FROM Stg_Trip
+-- UNION ALL SELECT 'Fact_Trip', COUNT(*) FROM Fact_Trip
+-- UNION ALL SELECT 'Fact_Daily_ZoneVendor', COUNT(*) FROM Fact_Daily_ZoneVendor;

@@ -29,5 +29,25 @@ services:
       mysql:
         condition: service_healthy
 
+  query_runner:
+    build:
+      context: ./sql
+    container_name: feup_aid_query_runner
+    working_dir: /app/queries
+    volumes:
+      - ./sql/queries:/app/queries
+    environment:
+      DW_HOST: mysql
+      DW_PORT: 3306
+      DW_USER: root
+      DW_PASSWORD: root
+      DW_DATABASE: dw
+    depends_on:
+      mysql:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+    command: python run_dw_queries.py
+
 volumes:
   mysql_data:
