@@ -160,7 +160,7 @@ def main():
         print(f"\n--- Running: {fname} ---")
         try:
             rows = run_query(conn, driver, sql_text, tuple(params))
-            print_rows(rows, max_rows=30)
+            print_rows(rows, max_rows=10000)
         except Exception as e:
             msg = str(e)
             if driver == "mysql.connector" and "MySQL Connection not available" in msg:
@@ -171,7 +171,7 @@ def main():
                 conn, driver = connect_mysql()
                 try:
                     rows = run_query(conn, driver, sql_text, tuple(params))
-                    print_rows(rows, max_rows=30)
+                    print_rows(rows, max_rows=10000)
                     continue
                 except Exception as e2:
                     print(f"ERROR running query (after reconnect): {e2}")
