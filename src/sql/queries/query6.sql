@@ -1,4 +1,4 @@
--- Dia + zona de pickup com maior receita
+-- Day + pickup zone with the highest revenue
 
 SELECT
   f.PickupDateKey,

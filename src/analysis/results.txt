@@ -1,0 +1,186 @@
+Available queries:
+  01) query1.sql  —  Viagens e receita por dia em Julho + total do mês
+  02) query2.sql  —  Horas mais movimentadas (pickups) em Manhattan + ticket médio
+  03) query3.sql  —  Perfil de viagens “aeroporto” em noites de fim-de-semana (volume e médias)
+  04) query4.sql  —  Distribuição de pagamentos (cash vs cartão) por borough de pickup
+  05) query5.sql  —  Zonas de pickup que explicam 70% da receita total
+  06) query6.sql  —  Dia + zona de pickup com maior receita
+  07) query7.sql  —  Detalhe das 50 viagens mais caras dentro da célula escolhida
+  08) query8.sql  —  Comparação de métricas entre Fact_Trip e Fact_Daily_ZoneVendor (diferenças)
+  09) query9.sql  —  Mudança de receita da 1ª para a 2ª quinzena por borough (diferença e %)
+
+
+--- Running: query1.sql ---
+FullDate   | Trips | Revenue  
+-----------+-------+----------
+None       | 10818 | 307274.35
+2025-07-01 | 364   | 10256.62 
+2025-07-02 | 352   | 9644.26  
+2025-07-03 | 288   | 7779.53  
+2025-07-04 | 213   | 5685.44  
+2025-07-05 | 249   | 6615.42  
+2025-07-06 | 248   | 8218.18  
+2025-07-07 | 301   | 9011.11  
+2025-07-08 | 383   | 9957.64  
+2025-07-09 | 445   | 12350.77 
+2025-07-10 | 397   | 11513.84 
+2025-07-11 | 338   | 9164.56  
+2025-07-12 | 333   | 9282.07  
+2025-07-13 | 344   | 10693.82 
+2025-07-14 | 350   | 9834.06  
+2025-07-15 | 387   | 11366.40 
+2025-07-16 | 443   | 12201.72 
+2025-07-17 | 442   | 12509.51 
+2025-07-18 | 369   | 10973.02 
+2025-07-19 | 316   | 8448.22  
+2025-07-20 | 328   | 9281.60  
+2025-07-21 | 332   | 10709.54 
+2025-07-22 | 357   | 9499.11  
+2025-07-23 | 350   | 9814.92  
+2025-07-24 | 377   | 11091.89 
+2025-07-25 | 362   | 9802.81  
+2025-07-26 | 355   | 9629.04  
+2025-07-27 | 278   | 8999.90  
+2025-07-28 | 341   | 10312.94 
+2025-07-29 | 372   | 10458.38 
+2025-07-30 | 408   | 10778.36 
+2025-07-31 | 396   | 11389.67 
+(32 rows)
+
+
+--- Running: query2.sql ---
+Hour | Trips | AvgTotal 
+-----+-------+----------
+18   | 701   | 22.422682
+16   | 641   | 24.553229
+17   | 619   | 25.182246
+14   | 598   | 23.144883
+13   | 575   | 23.169565
+20   | 566   | 21.326943
+15   | 563   | 22.124440
+19   | 562   | 22.835516
+12   | 516   | 23.383837
+21   | 513   | 23.598207
+11   | 498   | 24.293092
+22   | 468   | 21.886645
+9    | 462   | 23.576991
+10   | 416   | 23.611731
+8    | 350   | 23.284029
+23   | 311   | 23.065659
+7    | 237   | 22.841308
+0    | 218   | 24.171147
+1    | 132   | 25.242879
+6    | 120   | 21.868833
+2    | 107   | 20.249159
+3    | 62    | 26.188226
+5    | 56    | 36.645179
+4    | 46    | 37.616087
+(24 rows)
+
+
+--- Running: query3.sql ---
+DayOfWeekName | Hour | Trips | AvgMiles   | AvgTotal 
+--------------+------+-------+------------+----------
+Saturday      | 20   | 15    | 12.2473333 | 66.510000
+Saturday      | 21   | 12    | 11.0891667 | 55.044167
+Saturday      | 22   | 8     | 9.5887500  | 53.777500
+Saturday      | 23   | 8     | 13.5662500 | 64.981250
+Sunday        | 20   | 11    | 15.3227273 | 85.444545
+Sunday        | 21   | 11    | 13.0372727 | 72.285455
+Sunday        | 22   | 9     | 13.1744444 | 48.505556
+Sunday        | 23   | 10    | 12.1130000 | 38.632000
+(8 rows)
+
+
+--- Running: query4.sql ---
+Borough        | Trips_Cash | Trips_Card | Trips_Total
+---------------+------------+------------+------------
+Manhattan      | 1219       | 7751       | 9337       
+Queens         | 219        | 916        | 1254       
+Brooklyn       | 11         | 134        | 149        
+Bronx          | 1          | 36         | 37         
+Unknown        | 5          | 26         | 31         
+Outside of NYC | 1          | 7          | 10         
+(6 rows)
+
+
+--- Running: query5.sql ---
+Zone                         | Revenue  | SharePct | CumSharePct
+-----------------------------+----------+----------+------------
+JFK Airport                  | 47055.83 | 15.31    | 15.31      
+LaGuardia Airport            | 24113.41 | 7.85     | 23.16      
+Midtown Center               | 13700.45 | 4.46     | 27.62      
+Times Sq/Theatre District    | 10454.81 | 3.40     | 31.02      
+Midtown East                 | 10452.72 | 3.40     | 34.42      
+Penn Station/Madison Sq West | 10300.11 | 3.35     | 37.78      
+Upper East Side South        | 9698.24  | 3.16     | 40.93      
+Midtown North                | 8594.69  | 2.80     | 43.73      
+Murray Hill                  | 7660.94  | 2.49     | 46.22      
+Upper East Side North        | 7610.04  | 2.48     | 48.70      
+East Chelsea                 | 7464.78  | 2.43     | 51.13      
+Union Sq                     | 7089.77  | 2.31     | 53.44      
+Lincoln Square East          | 6867.21  | 2.23     | 55.67      
+Clinton East                 | 6866.20  | 2.23     | 57.91      
+Midtown South                | 5935.71  | 1.93     | 59.84      
+Upper West Side South        | 5685.30  | 1.85     | 61.69      
+West Village                 | 5633.03  | 1.83     | 63.52      
+East Village                 | 5234.81  | 1.70     | 65.22      
+Garment District             | 4811.76  | 1.57     | 66.79      
+Lenox Hill East              | 4591.08  | 1.49     | 68.28      
+West Chelsea/Hudson Yards    | 4451.19  | 1.45     | 69.73      
+(21 rows)
+
+
+--- Running: query6.sql ---
+PickupDateKey | FullDate   | PickupLocationKey | Zone        | Trips | Revenue
+--------------+------------+-------------------+-------------+-------+--------
+20250721      | 2025-07-21 | 5                 | JFK Airport | 43    | 2824.73
+(1 rows)
+
+
+This query expects parameters: PickupDateKey:int, PickupLocationKey:int
+  PickupDateKey (int) = 20250710
+  PickupLocationKey (int) = 2
+
+--- Running: query7.sql ---
+FactTripKey | TripDistance | TripDurationMinutes | AverageSpeedMph | TotalAmount | TipAmount | VendorKey | PaymentTypeKey
+------------+--------------+---------------------+-----------------+-------------+-----------+-----------+---------------
+3966        | 9.950        | 32.55               | 18.341          | 84.36       | 19.47     | 1         | 1             
+8848        | 8.090        | 25.30               | 19.186          | 49.98       | 8.33      | 1         | 1             
+3093        | 3.290        | 27.98               | 7.054           | 41.15       | 11.00     | 1         | 1             
+9105        | 4.010        | 27.50               | 8.749           | 40.86       | 6.81      | 1         | 1             
+8782        | 2.650        | 31.02               | 5.126           | 37.02       | 6.17      | 1         | 1             
+2796        | 2.350        | 22.65               | 6.225           | 32.83       | 7.58      | 1         | 1             
+6481        | 1.180        | 22.75               | 3.112           | 31.62       | 5.27      | 1         | 1             
+5578        | 1.680        | 25.12               | 4.013           | 31.14       | 5.19      | 1         | 1             
+5379        | 3.360        | 19.58               | 10.294          | 30.66       | 5.11      | 1         | 1             
+4151        | 2.000        | 12.93               | 9.278           | 26.63       | 5.18      | 1         | 1             
+4787        | 1.550        | 13.93               | 6.675           | 22.50       | 1.75      | 1         | 1             
+9017        | 1.420        | 12.60               | 6.762           | 22.25       | 2.90      | 1         | 1             
+4219        | 1.840        | 15.08               | 7.319           | 21.65       | 1.00      | 1         | 1             
+2490        | 0.770        | 8.02                | 5.763           | 20.85       | 5.00      | 1         | 1             
+3462        | 1.050        | 9.72                | 6.484           | 20.70       | 3.45      | 1         | 1             
+5028        | 1.210        | 11.07               | 6.560           | 18.15       | 2.00      | 1         | 1             
+2839        | 1.210        | 7.73                | 9.388           | 16.05       | 2.00      | 1         | 1             
+440         | 0.790        | 6.22                | 7.625           | 14.34       | 2.39      | 1         | 1             
+5351        | 0.430        | 5.77                | 4.474           | 11.25       | 0.00      | 1         | 2             
+(19 rows)
+
+
+--- Running: query8.sql ---
+ComparedCells | MissingInDailyFact | MissingInFactTrip | CellsWithTripDifference | CellsWithTotalDifference | CellsWithAnyDifference
+--------------+--------------------+-------------------+-------------------------+--------------------------+-----------------------
+2848          | 0                  | 0                 | 0                       | 0                        | 0                     
+(1 rows)
+
+
+--- Running: query9.sql ---
+Borough        | Rev_H1   | Rev_H2    | Diff_Rev | PctChange_H2_vs_H1
+---------------+----------+-----------+----------+-------------------
+Unknown        | 479.66   | 778.28    | 298.62   | 62.26             
+Brooklyn       | 1815.94  | 2686.42   | 870.48   | 47.94             
+Bronx          | 569.06   | 818.72    | 249.66   | 43.87             
+Manhattan      | 99029.91 | 119301.18 | 20271.27 | 20.47             
+Queens         | 38894.13 | 41846.78  | 2952.65  | 7.59              
+Outside of NYC | 585.02   | 469.25    | -115.77  | -19.79            
+(6 rows)

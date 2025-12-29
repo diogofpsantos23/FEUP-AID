@@ -1,4 +1,4 @@
--- Distribuição de pagamentos (cash vs cartão) por borough de pickup
+-- Payment distribution (cash vs card) by pickup borough
 
 SELECT
   pu.Borough,

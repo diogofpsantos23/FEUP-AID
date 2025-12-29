@@ -1,4 +1,4 @@
--- Viagens e receita por dia em Julho + total do mês
+-- Trips and revenue per day in July + monthly total
 
 SELECT
   d.FullDate,

@@ -1,4 +1,4 @@
--- Detalhe das 50 viagens mais caras dentro da célula escolhida
+-- Detailed view of the 50 most expensive trips within the selected cell
 -- params: PickupDateKey:int, PickupLocationKey:int
 
 SELECT

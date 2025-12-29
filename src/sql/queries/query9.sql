@@ -1,4 +1,4 @@
--- Mudança de receita da 1ª para a 2ª quinzena por borough (diferença e %)
+-- Revenue change from the 1st to the 2nd half of the month for top3 boroughs
 
 WITH h1 AS (
   SELECT pu.Borough, SUM(f.TotalAmount) AS Revenue

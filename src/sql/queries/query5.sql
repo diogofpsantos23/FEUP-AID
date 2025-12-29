@@ -1,4 +1,4 @@
--- Zonas de pickup que explicam 70% da receita total
+-- Pickup zones accounting for 70% of total revenue
 
 WITH zone_rev AS (
   SELECT

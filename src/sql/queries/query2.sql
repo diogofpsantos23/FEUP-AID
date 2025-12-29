@@ -1,4 +1,4 @@
--- Horas mais movimentadas (pickups) em Manhattan + ticket médio
+-- Busiest hours (pickups) in Manhattan + average ticket
 
 SELECT
   tod.Hour,

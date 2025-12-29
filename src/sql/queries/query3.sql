@@ -1,4 +1,4 @@
--- Perfil de viagens “aeroporto” em noites de fim-de-semana (volume e médias)
+-- “Airport” trip profile on weekend nights (volume and averages)
 
 SELECT
   d.DayOfWeekName,
